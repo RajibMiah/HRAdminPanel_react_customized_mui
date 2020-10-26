@@ -4,6 +4,7 @@ import {
    } from '@material-ui/core'
 import {useFrom , From} from './useForm'
 import {Controls} from '../../controls/controls'
+import * as EmployeeData from '../../services/employeService'
 
 
 const genderItems = [
@@ -36,9 +37,20 @@ const initalFielValue = {
 
 
 const EmplyesFrom = () => {
-  const {value , setValue  , handleInputChange} =  useFrom(initalFielValue)
+  
+  
+  const handleSubmit = (e) =>{
+     e.preventDefault()
+     //form validation work is pandding
+     EmployeeData.insertEmployee(value)
+     handleRest()
+    
+  }
+  
+
+  const {value , error, setErrors, setValue  , handleRest , handleInputChange} =  useFrom(initalFielValue)
   return (
-    <From>
+    <From onSubmit = {handleSubmit}>
       <Grid container>
         <Grid item xs = {6} >
             <Controls.Input
@@ -106,6 +118,7 @@ const EmplyesFrom = () => {
              <Controls.Button 
                text = 'reset'
                color  = 'default'
+               onClick = {handleRest}
             />
           </div>
          
