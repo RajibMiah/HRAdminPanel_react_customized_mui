@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/HRAdminPanel_react_customized_mui/static/css/main.b2f11e85.chunk.css",
+    "main.js": "/HRAdminPanel_react_customized_mui/static/js/main.92abf883.chunk.js",
+    "main.js.map": "/HRAdminPanel_react_customized_mui/static/js/main.92abf883.chunk.js.map",
+    "runtime-main.js": "/HRAdminPanel_react_customized_mui/static/js/runtime-main.b39b185d.js",
+    "runtime-main.js.map": "/HRAdminPanel_react_customized_mui/static/js/runtime-main.b39b185d.js.map",
+    "static/js/2.b64b1c72.chunk.js": "/HRAdminPanel_react_customized_mui/static/js/2.b64b1c72.chunk.js",
+    "static/js/2.b64b1c72.chunk.js.map": "/HRAdminPanel_react_customized_mui/static/js/2.b64b1c72.chunk.js.map",
+    "index.html": "/HRAdminPanel_react_customized_mui/index.html",
+    "precache-manifest.24dd68d9880d30e369aa12ff81dacde0.js": "/HRAdminPanel_react_customized_mui/precache-manifest.24dd68d9880d30e369aa12ff81dacde0.js",
+    "service-worker.js": "/HRAdminPanel_react_customized_mui/service-worker.js",
+    "static/css/main.b2f11e85.chunk.css.map": "/HRAdminPanel_react_customized_mui/static/css/main.b2f11e85.chunk.css.map",
+    "static/js/2.b64b1c72.chunk.js.LICENSE.txt": "/HRAdminPanel_react_customized_mui/static/js/2.b64b1c72.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b39b185d.js",
+    "static/js/2.b64b1c72.chunk.js",
+    "static/css/main.b2f11e85.chunk.css",
+    "static/js/main.92abf883.chunk.js"
+  ]
+}
