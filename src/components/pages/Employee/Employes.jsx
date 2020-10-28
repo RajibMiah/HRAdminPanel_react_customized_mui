@@ -12,6 +12,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import AddIcon from '@material-ui/icons/Add'
 import Popup from '../../controls/PopUpDialog'
 import * as EmployeeData from '../../services/employeService'
+import Notification from '../../controls/Notification'
+import ConfirmDialog from '../../controls/ConfirmDialog'
+
 const useStyle = makeStyles(theme => ({
   pageContent: {
     margin: theme.spacing(5),
@@ -41,6 +44,9 @@ const Employes = () => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [recordForEdit, setRecordForEdit] = useState(null)
+  const [notify , setNotify] = useState({isOpen:false , message :'' , type :''})
+  const [confirmDialog , setConfimDialog] = useState({ isOpen:false ,title :'' , subTitle : ''})
+
   const {
     TblContainer,
     Tbhead,
@@ -52,7 +58,7 @@ const Employes = () => {
     let target = e.target;
     setFilterFn({
       fn: items => {
-        if (target.value == "")
+        if (target.value === "")
           return items;
         else
           return items.filter(x => x.fullName.toLowerCase().includes(target.value))
@@ -61,7 +67,7 @@ const Employes = () => {
   }
 
   const addOrEdit = (employee, resetForm) => {
-    if (employee.id == 0)
+    if (employee.id === 0)
             EmployeeData.insertEmployee(employee)
         else
             EmployeeData.updateEmployee(employee)
@@ -69,11 +75,33 @@ const Employes = () => {
         setRecordForEdit(null)
         setOpenPopup(false)
         setRecords(EmployeeData.getAllEmployees())
+        setNotify({
+          isOpen : true ,
+          message: 'submited successfuly',
+          type:'success'
+        })
   }
   const openInPopup = (item) => {
     setRecordForEdit(item)
     setOpenPopup(true)
   }
+  
+  const handleDelete = (itemId) =>{
+      setConfimDialog({
+        ...ConfirmDialog,
+        isOpen:false
+      })
+      EmployeeData.deleteEmployee(itemId)
+      setRecords(EmployeeData.getAllEmployees())
+      setNotify({
+        isOpen : true ,
+        message: 'deleted successfuly',
+        type:'error'
+      })
+    
+    
+  }
+
   return (
     <div>
       <PageHeader
@@ -124,6 +152,13 @@ const Employes = () => {
                     </Controls.ActionButton>
                     <Controls.ActionButton
                       color='secondary'
+                      onClick = {()=>{setConfimDialog({
+                        isOpen:true ,
+                        title:'Are you sure you went to delete this reocrd',
+                        subTitle : 'You cant undo this operation',
+                        onConfirm: ()=>handleDelete(item.id)
+                      })}}
+                   
                     >
                       <CloseIcon fontSize='small'></CloseIcon>
 
@@ -146,6 +181,16 @@ const Employes = () => {
           addOrEdit={addOrEdit}
         />
       </Popup>
+      <Notification
+         notify = {notify}
+         setNotify = {setNotify}
+        
+      />
+      <ConfirmDialog
+         confirmDialog = {confirmDialog}
+         setConfimDialog = {setConfimDialog}
+
+      />
 
     </div>
   )

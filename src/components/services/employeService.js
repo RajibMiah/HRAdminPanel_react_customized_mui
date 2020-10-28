@@ -16,6 +16,12 @@ export function insertEmployee(data) {
   employees.push(data)
   localStorage.setItem(KEYS.employees,JSON.stringify(employees))
 }
+export function deleteEmployee (id){
+  let employees = getAllEmployees()
+  employees = employees.filter(x => x.id != id)
+  localStorage.setItem(KEYS.employees , JSON.stringify(employees))
+
+}
 export function updateEmployee(data) {
   let employees = getAllEmployees();
   let recordIndex = employees.findIndex(x => x.id == data.id);
