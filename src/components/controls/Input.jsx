@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core'
 
 export const Input = (props) =>{
-  const {  name , label , value , onChange } = props
+  const {  name , label , value , onChange , ...other } = props
    
   return(
         <TextField
@@ -15,6 +15,7 @@ export const Input = (props) =>{
         name = {name}
         onChange = {onChange}
         value = {value}
+        {...other}
       />
   ) 
 

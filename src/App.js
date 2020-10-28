@@ -35,7 +35,7 @@ const theme = createMuiTheme({
 
 const useStyle = makeStyles({
   appMain: {
-    paddingLeft: '320px',
+    paddingLeft: '250px',
     width: '100%'
   }
 })
@@ -44,7 +44,7 @@ function App() {
   const classes = useStyle()
   return (
     <ThemeProvider theme={theme}>
-      <div className='App'>
+      <div>
         <SideMenu />
         <div className={classes.appMain}>
           <Header />

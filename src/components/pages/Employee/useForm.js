@@ -1,28 +1,33 @@
 import React,  {useEffect , useState} from 'react'
 import {makeStyles} from '@material-ui/core'
 
-export const useFrom = (initalFielValue)=>{
+export const useFrom = (initalStateValue , validateOnChange = false ,validate)=>{
 
-  const [value , setValue] = useState(initalFielValue)
-  const [errors , setErrors] = useState({})
+  const [values, setValues] = useState(initalStateValue);
+    const [errors, setErrors] = useState({});
 
-  const handleInputChange = e =>{
-   const  {name , value} = e.target
-    setValue({
-      ...value,
-      [name] : value
-    })
-  }
-  const handleRest = () =>{
-    setValue(initalFielValue)
-  }
+    const handleInputChange = e => {
+        const { name, value } = e.target
+        setValues({
+            ...values,
+            [name]: value
+        })
+        if (validateOnChange)
+            validate({ [name]: value })
+    }
+
+    const resetForm = () => {
+        setValues(initalStateValue);
+        setErrors({})
+    }
+
   return {
-    value ,
-    setValue,
+    values,
+    setValues,
     errors,
     setErrors,
     handleInputChange,
-    handleRest
+    resetForm
   }
 }
 
